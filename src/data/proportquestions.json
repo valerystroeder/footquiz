@@ -1,0 +1,18 @@
+[
+    {
+        "question":{
+            "component":"text",
+            "text":"🏃‍♀️: 🍎🍎🍎 🥐 🍊🍊🍊🍊 -> 🏃‍♀️🏃‍♀️🏃‍♀️?"
+        },
+
+        "answer":{
+            "component":"multipleChoice",
+            "answers":["12🍎 4🥐 16🍊","_","9🍎 3🥐 12🍊","6🍎 2🥐 8🍊","1🍎 3🥐 12🍊"],
+            "correct":2
+        },
+
+        "asked":0
+    }
+
+]
+
