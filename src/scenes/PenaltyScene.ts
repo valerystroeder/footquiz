@@ -18,14 +18,15 @@ export class PenaltyScene extends Phaser.Scene {
     private keeper!: Phaser.GameObjects.Image;
     private currentQuestion!: Question;
     private mathquestions: Question[] = [];
+    private lecturequestions: Question[] = [];
     private clockquestions: Question[] = [];
     private questions: Question[] = [];
     private targets = [
         { letter: "A", x: 330, y: 210 },
         { letter: "B", x: 512, y: 190 },
         { letter: "C", x: 694, y: 210 },
-        { letter: "D", x: 360, y: 320 },
-        { letter: "E", x: 664, y: 320 }];
+        { letter: "D", x: 330, y: 320 },
+        { letter: "E", x: 694, y: 320 }];
     private questionText!: Phaser.GameObjects.Text;
     private answerTexts: Phaser.GameObjects.Text[] = [];
     private glove!: Phaser.GameObjects.Image;
@@ -46,6 +47,8 @@ export class PenaltyScene extends Phaser.Scene {
     private questionGraphics: Phaser.GameObjects.Graphics[] = [];
 
     private clockComponent!: ClockComponent;
+    private educationalGames=[{title:"Garder le fil",url:"https://learningapps.org/watch?v=p2osnn81c26"}
+];
 
     constructor() {
         super("PenaltyScene");
@@ -62,6 +65,7 @@ export class PenaltyScene extends Phaser.Scene {
         this.load.json("mathquestions", "src/data/mathquestions.json");
         this.load.json("clockquestions", "src/data/clockquestions.json");
         this.load.json("proportquestions", "src/data/proportquestions.json");
+        this.load.json("lecturequestions", "src/data/lecturequestions.json");
         this.load.image("clock","src/assets/clock.png");
     }
 
@@ -75,18 +79,21 @@ export class PenaltyScene extends Phaser.Scene {
             .setStroke("#000000", 8);;
         this.createScorePanel();
         this.clockComponent = new ClockComponent(this);
+        const gamesButton=this.add.text(960,100,"🎮",{fontSize:"40px"}).setOrigin(0.5).setInteractive({useHandCursor:true});
+        gamesButton.on("pointerdown",()=>this.showGamesMenu());
         const targets = [
             { letter: "A", x: 330, y: 210 },
             { letter: "B", x: 512, y: 190 },
             { letter: "C", x: 694, y: 210 },
-            { letter: "D", x: 360, y: 320 },
-            { letter: "E", x: 664, y: 320 }
+            { letter: "D", x: 330, y: 320 },
+            { letter: "E", x: 694, y: 320 }
         ];
         targets.forEach((target, index) => { this.createTarget(target.letter, target.x, target.y, index); });
 
         this.mathquestions = this.cache.json.get("mathquestions") as Question[];
         this.clockquestions = this.cache.json.get("clockquestions") as Question[];
-        this.questions = [...this.clockquestions,...this.mathquestions/*,...this.proportquestions*/];
+        this.lecturequestions = this.cache.json.get("lecturequestions") as Question[];
+        this.questions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
         this.loadNextQuestion();
     }
 
@@ -205,8 +212,8 @@ export class PenaltyScene extends Phaser.Scene {
 
         this.currentQuestion=question;
 
-        const panel=this.add.rectangle(512,680,900,170,0x0f1b3d,0.9);
-        panel.setStrokeStyle(4,0xffd700);
+        const questionPanel=this.add.rectangle(515,665,1000,205,0x0f1b3d,0.9);
+        questionPanel.setStrokeStyle(4,0xffd700);
 
         this.showQuestionComponent(question.question);
         this.showAnswerComponent(question.answer);
@@ -329,13 +336,15 @@ export class PenaltyScene extends Phaser.Scene {
     private showTextQuestion(question:any) {
         this.questionText=this.add.text(
             512,
-            620,
+            600,
             question.text,
             {
                 fontFamily:"Verdana",
-                fontSize:"42px",
+                fontSize:"24px",
                 color:"#ffffff",
-                fontStyle:"bold"
+                fontStyle:"bold",
+                align:"center",
+                wordWrap:{width:800}
             }
         ).setOrigin(0.5);
     }
@@ -343,17 +352,17 @@ export class PenaltyScene extends Phaser.Scene {
     private showMultipleChoiceAnswer(answer:any) {
         const style={
             fontFamily:"ARIAL",
-            fontSize:"28px",
+            fontSize:"20px",
             color:"#ffff88",
             stroke:"#000000",
             strokeThickness:4
         };
 
-        this.answerTexts.push(this.add.text(220,680,"A) "+answer.answers[0],style));
-        this.answerTexts.push(this.add.text(512,680,"B) "+answer.answers[1],style));
-        this.answerTexts.push(this.add.text(804,680,"C) "+answer.answers[2],style));
-        this.answerTexts.push(this.add.text(350,730,"D) "+answer.answers[3],style));
-        this.answerTexts.push(this.add.text(674,730,"E) "+answer.answers[4],style));
+        this.answerTexts.push(this.add.text(50,620,"A) "+answer.answers[0],style));
+        this.answerTexts.push(this.add.text(50,650,"B) "+answer.answers[1],style));
+        this.answerTexts.push(this.add.text(50,680,"C) "+answer.answers[2],style));
+        this.answerTexts.push(this.add.text(50,710,"D) "+answer.answers[3],style));
+        this.answerTexts.push(this.add.text(50,740,"E) "+answer.answers[4],style));
     }
 
     private answerSelected(answerIndex: number) {
@@ -680,6 +689,95 @@ export class PenaltyScene extends Phaser.Scene {
                 txt.destroy();
             }
         });
+    }
+
+    private showGamesMenu(){
+        const background=this.add.rectangle(
+            512,
+            384,
+            700,
+            500,
+            0x000000,
+            0.9
+        )
+        .setDepth(200);
+
+        const title=this.add.text(
+            512,
+            170,
+            "Mini-jeux",
+            {
+                fontSize:"36px",
+                color:"#ffffff"
+            }
+        )
+        .setOrigin(0.5)
+        .setDepth(201);
+
+        const elements:any[]=[
+            background,
+            title
+        ];
+
+        this.educationalGames.forEach(
+            (game,index)=>
+            {
+                const link=this.add.text(
+                    250,
+                    250 + index * 60,
+                    game.title,
+                    {
+                        fontSize:"28px",
+                        color:"#ffff00"
+                    }
+                )
+                .setInteractive({useHandCursor:true})
+                .setDepth(201);
+
+                link.on(
+                    "pointerdown",
+                    ()=>{
+                        window.open(
+                            game.url,
+                            "_blank"
+                        );
+
+                        this.addScore(300);
+
+                        elements.forEach(
+                            e=>e.destroy()
+                        );
+
+                        link.destroy();
+                        closeButton.destroy();
+                    }
+                );
+
+                elements.push(link);
+            }
+        );
+
+        const closeButton=this.add.text(
+            760,
+            170,
+            "❌",
+            {
+                fontSize:"32px"
+            }
+        )
+        .setInteractive({useHandCursor:true})
+        .setDepth(201);
+
+        closeButton.on(
+            "pointerdown",
+            ()=>{
+                elements.forEach(
+                    e=>e.destroy()
+                );
+
+                closeButton.destroy();
+            }
+        );
     }
 
 }

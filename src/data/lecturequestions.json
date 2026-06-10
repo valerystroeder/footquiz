@@ -1,0 +1,765 @@
+[
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nLa maison est belle et colorée"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Majuscule au début",
+        "Point à la fin",
+        "Espaces entre les mots",
+        "Pas logique",
+        "Il manque des mots"
+      ],
+      "correct":1
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nL'oiseausurvolelaforet."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Majuscule au début",
+        "Point à la fin",
+        "Espaces entre les mots",
+        "Trop long",
+        "Pas logique"
+      ],
+      "correct":2
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nLe pirate avale un requin entier."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Majuscule au début",
+        "Point à la fin",
+        "Pas logique",
+        "Ordre des mots incorrect",
+        "Il manque des mots"
+      ],
+      "correct":2
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nLe pain coupe le couteau."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Pas logique",
+        "Point à la fin",
+        "Majuscule au début",
+        "Espaces entre les mots",
+        "Trop long"
+      ],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nElle a mangé des."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Majuscule au début",
+        "Pas logique",
+        "Il manque des mots",
+        "Ordre des mots incorrect",
+        "Trop long"
+      ],
+      "correct":2
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\njoue au ballon dans le jardin."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Majuscule au début",
+        "Point à la fin",
+        "Pas logique",
+        "Espaces entre les mots",
+        "Trop long"
+      ],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nLe chat noir rapidement dort."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Point à la fin",
+        "Ordre des mots incorrect",
+        "Pas logique",
+        "Majuscule au début",
+        "Espaces entre les mots"
+      ],
+      "correct":1
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis ce qui ne va pas dans cette phrase :\nLe petit garçon qui porte un pantalon bleu et une casquette rouge marche dans le parc avec son chien et son ballon puis rentre chez lui."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Pas logique",
+        "Ordre des mots incorrect",
+        "Trop long",
+        "Majuscule au début",
+        "Point à la fin"
+      ],
+      "correct":2
+    },
+    "asked":0
+  },
+
+
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Quels mots indiquent que la phrase est au féminin ?\nUne habitante parle de moi."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["une habitante","parle de","moi","une parle","habitante moi"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis le féminin de 'mort'."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["morte","morse","mortel","morts","mortalité"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Le mot 'forêt' est :"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["masculin","féminin","on ne sait pas","les deux","aucun"],
+      "correct":1
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Pourquoi y a-t-il un 'e' à la fin de 'bienveillante' dans la phrase : 'L'institutrice est bienveillante' ?"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Parce qu'il s'accorde avec institutrice",
+        "Parce qu'il y a deux mots",
+        "Parce qu'il s'écrit toujours ainsi",
+        "Parce que l'institutrice apprend",
+        "Parce que la phrase est longue"
+      ],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Dans la phrase 'Mon chat dort.', peut-on savoir si le chat est masculin ou féminin ?"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["masculin","féminin","on ne sait pas","les deux","aucun"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Transforme au féminin : 'Mon voisin est parti'."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Ma voisine est partie",
+        "Mon voisin est partie",
+        "Ma voisine est parti",
+        "Mes voisines sont parties",
+        "Ma voisine partira"
+      ],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Trouve l'intrus."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["chatte","lionne","tigresse","cheval","biche"],
+      "correct":3
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis le masculin de 'boulangère'."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["boulanger","boulanger","boulange","boulangère","boulangerie"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Le mot 'cloche' est :"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["masculin","féminin","on ne sait pas","les deux","aucun"],
+      "correct":1
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Dans la phrase 'La chanteuse est célèbre', quel mot montre que l'on parle d'une femme ?"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["la chanteuse","est célèbre","la","célèbre","est"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+
+
+
+
+  
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Quels mots indiquent que la phrase est au pluriel ?\nLes habitantes parlent de moi."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["les habitantes parlent","de moi","habitantes moi","parlent de","les de"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis le pluriel de 'chat'."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["chats","chates","chatses","chat","chatte"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Le mot 'arbres' est :"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["singulier","pluriel","on ne sait pas","masculin","féminin"],
+      "correct":1
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Pourquoi y a-t-il un 's' à la fin de 'joueurs' dans la phrase 'Les joueurs arrivent' ?"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Parce qu'il y en a plusieurs",
+        "Parce que le mot est long",
+        "Parce qu'il est masculin",
+        "Parce qu'il commence par j",
+        "Parce qu'il est difficile"
+      ],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Transforme au pluriel : 'Le voisin est parti'."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":[
+        "Les voisins sont partis",
+        "Les voisin est partis",
+        "Le voisins sont parti",
+        "Les voisins est parti",
+        "Les voisines sont parties"
+      ],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Trouve l'intrus."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["chiens","chats","lapins","cheval","oiseaux"],
+      "correct":3
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Dans la phrase 'Les enfants jouent dans le jardin', quel groupe montre qu'on parle de plusieurs personnes ?"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["les enfants","jouent dans","dans le","le jardin","jardin"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Choisis le singulier de 'maisons'."
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["maison","maisons","maisonss","maisonne","maisonses"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Le mot 'jouet' est :"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["singulier","pluriel","on ne sait pas","masculin","féminin"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+  {
+    "category":"lecture",
+    "question":{
+      "component":"text",
+      "text":"Dans la phrase 'Une voiture roule', parle-t-on d'une ou de plusieurs voitures ?"
+    },
+    "answer":{
+      "component":"multipleChoice",
+      "answers":["une seule","plusieurs","on ne sait pas","deux","aucune"],
+      "correct":0
+    },
+    "asked":0
+  },
+
+
+
+
+
+
+  {
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMon frère et moi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["nous","ils","vous","elles","tu"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nLes voisines"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["ils","elle","elles","nous","vous"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMon oncle"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["elle","ils","nous","il","elles"],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMa sœur et toi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["nous","ils","vous","elles","je"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nDemain ils iront à la brocante."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Mes parents","Ma maman","Mon frère et moi","Toi","Ma voisine"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nElle lit un livre."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Mon père","Les enfants","Ma cousine","Mes voisins","Mon frère et moi"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nToi et Léa"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["vous","nous","elles","ils","je"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nNous allons à la piscine."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Mon cousin","Mes parents","Mon frère et moi","Ma voisine","Les filles"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nLes garçons jouent au football."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["elles","il","nous","ils","elle"],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nElles préparent un gâteau."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Mes cousines","Mon papa","Mon frère","Mon voisin","Toi et moi"],
+    "correct":0
+  },
+  "asked":0
+},
+
+
+
+
+
+
+
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMon frère et ma sœur"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["elles","nous","ils","vous","il"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nToi et moi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["vous","ils","nous","elles","je"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMes cousines et Léa"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["elles","ils","vous","nous","elle"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMon chien et moi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["ils","nous","vous","il","elles"],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nMa sœur et toi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["nous","elles","vous","ils","elle"],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nIls jouent dans le jardin."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Mes cousins","Ma cousine","Toi et moi","Ma sœur","Léa"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nNous partons en vacances."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Mon frère et moi","Mon voisin","Mes cousines","Mon papa","Ma maîtresse"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le groupe qui peut remplacer le pronom.\nVous êtes très gentils."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["Toi et ton frère","Mes cousins","Mon papa","Ma sœur","Léa"],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nPapa, maman et moi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["ils","vous","elles","nous","je"],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"lecture",
+  "question":{
+    "component":"text",
+    "text":"Choisis le bon pronom.\nLe maître et les élèves"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":["ils","elles","nous","vous","il"],
+    "correct":0
+  },
+  "asked":0
+}
+
+]
