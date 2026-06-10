@@ -6,6 +6,9 @@ import type {
     AnswerComponent
 } from "../model/Question";
 
+import { ClockComponent } from "../components/ClockComponent";
+import type {ClockDrawingQuestionComponent} from "../model/Question";
+
 export class PenaltyScene extends Phaser.Scene {
     //private keeper!: Phaser.GameObjects.Rectangle;
     private isShooting = false;
@@ -45,10 +48,7 @@ export class PenaltyScene extends Phaser.Scene {
     
     private questionGraphics: Phaser.GameObjects.Graphics[] = [];
 
-    private clockFace!: Phaser.GameObjects.Image;
-
-    private hourHand!: Phaser.GameObjects.Graphics;
-    private minuteHand!: Phaser.GameObjects.Graphics;
+    private clockComponent!: ClockComponent;
 
     private selectedHour = 12;
     private selectedMinute = 0;
@@ -59,9 +59,6 @@ export class PenaltyScene extends Phaser.Scene {
     private editableMinute = 0;
 
     private editableClock = false;
-
-    private expectedHour = 0;
-    private expectedMinute = 0;
 
     private clockCenterX = 512;
     private clockCenterY = 620;
@@ -113,6 +110,8 @@ export class PenaltyScene extends Phaser.Scene {
             .setStroke("#000000", 8);;
 
         this.createScorePanel();
+
+        this.clockComponent = new ClockComponent(this);
 
         const targets = [
             { letter: "A", x: 330, y: 210 },
@@ -333,7 +332,7 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     private showClockDrawingQuestion(question:any) {
-        this.drawClock(512, 620, question.hour, question.minute);
+        this.clockComponent.showClock(512, 620, question.hour, question.minute);
     }
 
     private showClockEditorAnswer()
@@ -342,7 +341,7 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     private drawEditableClock() {
-        this.drawClock(
+      /*  this.clockComponent.showClock(
             this.clockCenterX,
             this.clockCenterY,
             this.editableHour,
@@ -357,7 +356,7 @@ export class PenaltyScene extends Phaser.Scene {
             {
                 this.clockClicked(pointer);
             }
-        );
+        );*/
     }
 
     private clockClicked(pointer:Phaser.Input.Pointer)
@@ -421,10 +420,9 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     private refreshEditableClock(){
-        this.hourHand.destroy();
-        this.minuteHand.destroy();
-
-        const minuteAngle=
+        this.clockComponent.destroy();
+        
+        /*const minuteAngle=
             (this.editableMinute/60)
             *Math.PI*2
             -Math.PI/2;
@@ -458,7 +456,7 @@ export class PenaltyScene extends Phaser.Scene {
             this.clockCenterY+
             Math.sin(minuteAngle)*70,
             0x0000ff
-        ).setLineWidth(4);
+        ).setLineWidth(4);*/
     }
 
     private validateClockAnswer() {
@@ -512,68 +510,12 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     private cleanupClockEditor() {
-        if(this.clockFace)
-            this.clockFace.destroy();
-
-        if(this.hourHand)
-            this.hourHand.destroy();
-
-        if(this.minuteHand)
-            this.minuteHand.destroy();
+        this.clockComponent.destroy();
 
         if(this.validateButton)
             this.validateButton.destroy();
 
         this.message.setText("");
-    }
-
-    private drawClock(x:number,y:number,hour:number,minute:number) {
-        console.log("hour=",hour);
-        console.log("minute=",minute);
-        this.clockFace=this.add.image(
-            x,
-            y,
-            "clock"
-        ).setScale(0.1);
-
-        const minuteAngle=
-            (minute/60)*Math.PI*2
-            -Math.PI/2;
-
-        const hourAngle=
-            ((hour%12)/12)*Math.PI*2
-            +(minute/60)*(Math.PI/6)
-            -Math.PI/2;
-
-        this.hourHand=this.add.graphics();
-
-        this.hourHand.lineStyle(
-            6,
-            0xff0000,
-            1
-        );
-
-        this.hourHand.lineBetween(
-            x,
-            y,
-            x + Math.cos(hourAngle)*35,
-            y + Math.sin(hourAngle)*35
-        );
-
-        this.minuteHand=this.add.graphics();
-
-        this.minuteHand.lineStyle(
-            4,
-            0x0000ff,
-            1
-        );
-
-        this.minuteHand.lineBetween(
-            x,
-            y,
-            x + Math.cos(minuteAngle)*55,
-            y + Math.sin(minuteAngle)*55
-        );
     }
 
     private showTimeDisplayQuestion(question:any)
@@ -661,9 +603,9 @@ export class PenaltyScene extends Phaser.Scene {
 
     private validateTimePicker(){
         const success=
-            this.selectedHour===this.currentQuestion.question.hour
+            this.selectedHour===this.clockComponent.getHour()
             &&
-            this.selectedMinute===this.currentQuestion.question.minute;
+            this.selectedMinute===this.clockComponent.getMinute();
 
         if(success)
         {
@@ -696,9 +638,7 @@ export class PenaltyScene extends Phaser.Scene {
 
         this.validateButton.destroy();
 
-        if(this.clockFace) this.clockFace.destroy();
-        if(this.hourHand) this.hourHand.destroy();
-        if(this.minuteHand) this.minuteHand.destroy();
+        this.clockComponent.destroy();
 
         this.message.setText("");
     }
@@ -756,10 +696,11 @@ export class PenaltyScene extends Phaser.Scene {
             return;
         }
 
-        const isCorrect = answerIndex===this.currentQuestion.answer.correct;
+        const clockDrawingQuestion = this.currentQuestion.question as ClockDrawingQuestionComponent;
+        const success = this.selectedHour === clockDrawingQuestion.hour && this.selectedMinute === clockDrawingQuestion.minute;
 
         // bonne réponse
-        if (isCorrect) {
+        if (success) {
 
             const possibleTargets =
                 [0, 1, 2, 3, 4]
@@ -776,13 +717,8 @@ export class PenaltyScene extends Phaser.Scene {
                 answerIndex,
                 keeperTarget
             );
-        }
-
-        //
-        // mauvaise réponse
-        //
-        else {
-
+        } else {
+            // mauvaise réponse
             this.shoot(
                 answerIndex,
                 answerIndex
@@ -1081,7 +1017,7 @@ export class PenaltyScene extends Phaser.Scene {
         this.expectedHour=question.hour;
         this.expectedMinute=question.minute;
 
-        this.drawClock(
+        this.clockComponent.showClock(
             512,
             500,
             question.hour,
