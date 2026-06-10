@@ -1,5 +1,10 @@
 
 import Phaser from "phaser";
+import type {
+    Question,
+    QuestionComponent,
+    AnswerComponent
+} from "../model/Question";
 
 export class PenaltyScene extends Phaser.Scene {
     //private keeper!: Phaser.GameObjects.Rectangle;
@@ -8,11 +13,11 @@ export class PenaltyScene extends Phaser.Scene {
     //private ball!: Phaser.GameObjects.Arc;
     private ball!: Phaser.GameObjects.Image;
     private keeper!: Phaser.GameObjects.Image;
-    private currentQuestion: any;
-    private mathquestions: any[] = [];
-    private clockquestions: any[] = [];
-    private proportquestions: any[] = [];
-    private questions: any[] = [];
+    private currentQuestion!: Question;
+    private mathquestions: Question[] = [];
+    private clockquestions: Question[] = [];
+    private proportquestions: Question[] = [];
+    private questions: Question[] = [];
     private targets = [
         { letter: "A", x: 330, y: 210 },
         { letter: "B", x: 512, y: 190 },
@@ -119,9 +124,9 @@ export class PenaltyScene extends Phaser.Scene {
 
         targets.forEach((target, index) => { this.createTarget(target.letter, target.x, target.y, index); });
 
-        this.mathquestions = this.cache.json.get("mathquestions");
-        this.clockquestions = this.cache.json.get("clockquestions");
-        this.proportquestions = this.cache.json.get("proportquestions");
+        this.mathquestions = this.cache.json.get("mathquestions") as Question[];
+        this.clockquestions = this.cache.json.get("clockquestions") as Question[];
+        this.proportquestions = this.cache.json.get("proportquestions") as Question[];
         this.questions = [...this.clockquestions,...this.mathquestions/*,...this.proportquestions*/];
         this.loadNextQuestion();
     }
@@ -216,7 +221,7 @@ export class PenaltyScene extends Phaser.Scene {
         const candidates = this.questions.filter(q => q.asked === minAsked);
 
         // Tirage au hasard
-        const question = Phaser.Utils.Array.GetRandom(candidates);
+        const question = Phaser.Utils.Array.GetRandom(candidates) as Question;
 
         // Incrément du compteur
         question.asked++;
@@ -269,7 +274,7 @@ export class PenaltyScene extends Phaser.Scene {
         circle.on("pointerdown", () => { if (this.isShooting) { return; } this.answerSelected(answerIndex); });
     }
 
-    private showQuestion(question:any) {
+    private showQuestion(question:Question) {
         this.questionGraphics.forEach(g=>g.destroy());
         this.questionGraphics=[];
         if(this.questionText) this.questionText.destroy();
@@ -286,7 +291,7 @@ export class PenaltyScene extends Phaser.Scene {
         this.showAnswerComponent(question.answer);
     }
 
-    private showQuestionComponent(question:any){
+    private showQuestionComponent(question:QuestionComponent) {
         switch(question.component) {
             case "text":
                 this.showTextQuestion(question);
@@ -304,7 +309,7 @@ export class PenaltyScene extends Phaser.Scene {
                 break;
 
             default:
-                console.error("Question component inconnu",question.component);
+                console.error("Question component inconnu",question);
         }
     }
 
@@ -698,7 +703,7 @@ export class PenaltyScene extends Phaser.Scene {
         this.message.setText("");
     }
 
-    private showAnswerComponent(answer:any){
+    private showAnswerComponent(answer:AnswerComponent){
     switch(answer.component)
     {
         case "multipleChoice":
