@@ -12,8 +12,7 @@ export type QuestionComponent =
 
 export type AnswerComponent =
     | MultipleChoiceAnswerComponent
-    | TimePickerAnswerComponent
-    | ClockEditorAnswerComponent;
+    | TimePickerAnswerComponent;
 
 export interface TextQuestionComponent {
     component: "text";
@@ -46,8 +45,4 @@ export interface MultipleChoiceAnswerComponent {
 
 export interface TimePickerAnswerComponent {
     component: "timePicker";
-}
-
-export interface ClockEditorAnswerComponent {
-    component: "clockEditor";
 }

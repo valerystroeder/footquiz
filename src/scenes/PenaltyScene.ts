@@ -19,7 +19,6 @@ export class PenaltyScene extends Phaser.Scene {
     private currentQuestion!: Question;
     private mathquestions: Question[] = [];
     private clockquestions: Question[] = [];
-    private proportquestions: Question[] = [];
     private questions: Question[] = [];
     private targets = [
         { letter: "A", x: 330, y: 210 },
@@ -34,7 +33,6 @@ export class PenaltyScene extends Phaser.Scene {
 
     private gloveAngle = Math.PI;
     private gloveDirection = -1;
-    private ballAngle = Math.PI;
 
     private miniGameRunning = false;
     private targetCircles: Phaser.GameObjects.Arc[] = [];
@@ -44,33 +42,10 @@ export class PenaltyScene extends Phaser.Scene {
 
     private scorePanel!: Phaser.GameObjects.Graphics;
     private scoreText!: Phaser.GameObjects.Text;
-    private trophyIcon!: Phaser.GameObjects.Text;
     
     private questionGraphics: Phaser.GameObjects.Graphics[] = [];
 
     private clockComponent!: ClockComponent;
-
-    private selectedHour = 12;
-    private selectedMinute = 0;
-
-    private hourText!: Phaser.GameObjects.Text;
-    private minuteText!: Phaser.GameObjects.Text;
-    private editableHour = 12;
-    private editableMinute = 0;
-
-    private editableClock = false;
-
-    private clockCenterX = 512;
-    private clockCenterY = 620;
-
-    private validateButton!: Phaser.GameObjects.Image;
-
-    private hourMinus!: Phaser.GameObjects.Text;
-    private hourPlus!: Phaser.GameObjects.Text;
-
-    private minuteMinus!: Phaser.GameObjects.Text;
-    private minutePlus!: Phaser.GameObjects.Text;
-
 
     constructor() {
         super("PenaltyScene");
@@ -92,27 +67,14 @@ export class PenaltyScene extends Phaser.Scene {
 
     create() {
 
-        //this.sound.play("champions",{loop: true,volume: 0.2});
-
-        //this.add.rectangle(512,384,1024,768,0x3aa655);
-        //this.add.rectangle(512,180,500,220,0xffffff).setStrokeStyle(8,0x000000);
         this.add.image(512, 400, "background").setScale(0.8);
-
-        //this.keeper = this.add.rectangle(512,200,40,80,0xffaa00);
         this.keeper = this.add.image(512, 300, "keeper").setScale(0.4).setDepth(20);
-
-        //this.add.circle(512,620,25,0x0000ff);
-        //this.ball = this.add.circle(512,540,12,0xffffff).setStrokeStyle(2,0x000000);
         this.ball = this.add.image(512, 530, "ball").setScale(0.1).setDepth(30);
-
         this.message = this.add.text(430, 320, "", { fontSize: "80px", color: "#ffdd00", fontFamily: "Impact" })
             .setDepth(50).setFontSize(100)
             .setStroke("#000000", 8);;
-
         this.createScorePanel();
-
         this.clockComponent = new ClockComponent(this);
-
         const targets = [
             { letter: "A", x: 330, y: 210 },
             { letter: "B", x: 512, y: 190 },
@@ -120,67 +82,27 @@ export class PenaltyScene extends Phaser.Scene {
             { letter: "D", x: 360, y: 320 },
             { letter: "E", x: 664, y: 320 }
         ];
-
         targets.forEach((target, index) => { this.createTarget(target.letter, target.x, target.y, index); });
 
         this.mathquestions = this.cache.json.get("mathquestions") as Question[];
         this.clockquestions = this.cache.json.get("clockquestions") as Question[];
-        this.proportquestions = this.cache.json.get("proportquestions") as Question[];
         this.questions = [...this.clockquestions,...this.mathquestions/*,...this.proportquestions*/];
         this.loadNextQuestion();
     }
 
     private createScorePanel() {
         this.scorePanel = this.add.graphics();
+        this.scorePanel.fillStyle(0x000000,0.8);
+        this.scorePanel.lineStyle(3,0xffffff,1);
+        this.scorePanel.fillRoundedRect(760,20,240,70,15);
+        this.scorePanel.strokeRoundedRect(760,20,240,70,15);
 
-        this.scorePanel.fillStyle(
-            0x000000,
-            0.8
-        );
-
-        this.scorePanel.lineStyle(
-            3,
-            0xffffff,
-            1
-        );
-
-        this.scorePanel.fillRoundedRect(
-            760,
-            20,
-            240,
-            70,
-            15
-        );
-
-        this.scorePanel.strokeRoundedRect(
-            760,
-            20,
-            240,
-            70,
-            15
-        );
-
-        //
         // Coupe
-        //
-        this.trophyIcon =
-            this.add.text(
-                780,
-                30,
-                "🏆",
-                {
-                    fontSize: "30px"
-                }
-            );
+        this.add.text(780,30,"🏆",{fontSize: "30px", padding: { top: 10 }});
 
-        //
         // Score
-        //
         this.scoreText =
-            this.add.text(
-                830,
-                35,
-                "0 pts",
+            this.add.text(830,35,"0 pts",
                 {
                     fontFamily: "Verdana",
                     fontSize: "28px",
@@ -335,189 +257,6 @@ export class PenaltyScene extends Phaser.Scene {
         this.clockComponent.showClock(512, 620, question.hour, question.minute);
     }
 
-    private showClockEditorAnswer()
-    {
-        console.log("clockEditor pas encore implémenté");
-    }
-
-    private drawEditableClock() {
-      /*  this.clockComponent.showClock(
-            this.clockCenterX,
-            this.clockCenterY,
-            this.editableHour,
-            this.editableMinute
-        );
-
-        this.clockFace.setInteractive();
-
-        this.clockFace.on(
-            "pointerdown",
-            (pointer:Phaser.Input.Pointer)=>
-            {
-                this.clockClicked(pointer);
-            }
-        );*/
-    }
-
-    private clockClicked(pointer:Phaser.Input.Pointer)
-    {
-        const dx=
-            pointer.worldX-
-            this.clockCenterX;
-
-        const dy=
-            pointer.worldY-
-            this.clockCenterY;
-
-        const distance=
-            Math.sqrt(dx*dx+dy*dy);
-
-        const angle=
-            Math.atan2(dy,dx)+Math.PI/2;
-
-        let normalized=
-            angle;
-
-        if(normalized<0)
-            normalized+=Math.PI*2;
-
-        //
-        // Zone extérieure = minutes
-        //
-        if(distance>60)
-        {
-            const minuteIndex=
-                Math.round(
-                    normalized/
-                    (Math.PI*2)
-                    *12
-                )%12;
-
-            this.editableMinute=
-                minuteIndex*5;
-        }
-
-        //
-        // Zone intérieure = heures
-        //
-        else
-        {
-            let hour=
-                Math.round(
-                    normalized/
-                    (Math.PI*2)
-                    *12
-                );
-
-            if(hour===0)
-                hour=12;
-
-            this.editableHour=
-                hour;
-        }
-
-        this.refreshEditableClock();
-    }
-
-    private refreshEditableClock(){
-        this.clockComponent.destroy();
-        
-        /*const minuteAngle=
-            (this.editableMinute/60)
-            *Math.PI*2
-            -Math.PI/2;
-
-        const hourAngle=
-            ((this.editableHour%12)/12)
-            *Math.PI*2
-            +(this.editableMinute/60)
-            *(Math.PI/6)
-            -Math.PI/2;
-
-        this.hourHand=this.add.line(
-            0,
-            0,
-            this.clockCenterX,
-            this.clockCenterY,
-            this.clockCenterX+
-            Math.cos(hourAngle)*45,
-            this.clockCenterY+
-            Math.sin(hourAngle)*45,
-            0xff0000
-        ).setLineWidth(6);
-
-        this.minuteHand=this.add.line(
-            0,
-            0,
-            this.clockCenterX,
-            this.clockCenterY,
-            this.clockCenterX+
-            Math.cos(minuteAngle)*70,
-            this.clockCenterY+
-            Math.sin(minuteAngle)*70,
-            0x0000ff
-        ).setLineWidth(4);*/
-    }
-
-    private validateClockAnswer() {
-        const minuteError=
-            Math.abs(
-                this.editableMinute-
-                this.expectedMinute
-            );
-
-        const hourError=
-            Math.abs(
-                this.editableHour-
-                this.expectedHour
-            );
-
-        const success=
-            minuteError<=5 &&
-            hourError<=1;
-
-        if(success)
-        {
-            this.addScore(25);
-
-            this.message.setText(
-                "⭐️ BRAVO ⭐️"
-            );
-        }
-        else
-        {
-            this.message.setText(
-                "😬 ESSAYE ENCORE 😬"
-            );
-        }
-
-        this.message.setScale(0);
-
-        this.tweens.add({
-            targets:this.message,
-            scale:1,
-            duration:250,
-            ease:"Back.Out"
-        });
-
-        this.time.delayedCall(
-            1500,
-            ()=>{
-                this.cleanupClockEditor();
-                this.loadNextQuestion();
-            }
-        );
-    }
-
-    private cleanupClockEditor() {
-        this.clockComponent.destroy();
-
-        if(this.validateButton)
-            this.validateButton.destroy();
-
-        this.message.setText("");
-    }
-
     private showTimeDisplayQuestion(question:any)
     {
         const hh=
@@ -541,71 +280,10 @@ export class PenaltyScene extends Phaser.Scene {
         ).setOrigin(0.5);
     }
 
-    private showTimePickerAnswer() {
-        this.selectedHour=12;
-        this.selectedMinute=0;
-
-        this.hourMinus=this.add.text(320,690,"◀",{fontSize:"48px",color:"#ffff00"})
-            .setInteractive({useHandCursor:true});
-
-        this.hourText=this.add.text(390,690,"12",{fontSize:"48px",color:"#ffffff"});
-
-        this.hourPlus=this.add.text(470,690,"▶",{fontSize:"48px",color:"#ffff00"})
-            .setInteractive({useHandCursor:true});
-
-        this.add.text(540,690,":",{fontSize:"48px",color:"#ffffff"});
-
-        this.minuteMinus=this.add.text(590,690,"◀",{fontSize:"48px",color:"#ffff00"})
-            .setInteractive({useHandCursor:true});
-
-        this.minuteText=this.add.text(660,690,"00",{fontSize:"48px",color:"#ffffff"});
-
-        this.minutePlus=this.add.text(740,690,"▶",{fontSize:"48px",color:"#ffff00"})
-            .setInteractive({useHandCursor:true});
-
-        this.hourMinus.on("pointerdown",()=>this.changeHour(-1));
-        this.hourPlus.on("pointerdown",()=>this.changeHour(1));
-
-        this.minuteMinus.on("pointerdown",()=>this.changeMinute(-5));
-        this.minutePlus.on("pointerdown",()=>this.changeMinute(5));
-
-        this.validateButton=this.add.image(900,710,"ball")
-            .setScale(0.1)
-            .setInteractive({useHandCursor:true});
-
-        this.validateButton.on(
-            "pointerdown",
-            ()=>this.validateTimePicker()
-        );
-    }
-
-    private changeHour(delta:number) {
-        this.selectedHour+=delta;
-
-        if(this.selectedHour<0) this.selectedHour=23;
-        if(this.selectedHour>23) this.selectedHour=0;
-
-        this.hourText.setText(
-            this.selectedHour.toString().padStart(2,"0")
-        );
-    }
-
-    private changeMinute(delta:number){
-        this.selectedMinute+=delta;
-
-        if(this.selectedMinute<0) this.selectedMinute=55;
-        if(this.selectedMinute>55) this.selectedMinute=0;
-
-        this.minuteText.setText(
-            this.selectedMinute.toString().padStart(2,"0")
-        );
-    }
-
     private validateTimePicker(){
-        const success=
-            this.selectedHour===this.clockComponent.getHour()
-            &&
-            this.selectedMinute===this.clockComponent.getMinute();
+        const success =
+            this.clockComponent.getTimePickerHour() === this.clockComponent.getClockHour()
+            && this.clockComponent.getTimePickerMinute() === this.clockComponent.getClockMinute();
 
         if(success)
         {
@@ -620,45 +298,33 @@ export class PenaltyScene extends Phaser.Scene {
         this.time.delayedCall(
             1500,
             ()=>{
-                this.cleanupTimePicker();
+                this.message.setText("");
+                this.clockComponent.destroyTimePicker();
+                this.clockComponent.destroy();
                 this.loadNextQuestion();
             }
         );
     }
 
-    private cleanupTimePicker(){
-        this.hourMinus.destroy();
-        this.hourPlus.destroy();
-
-        this.minuteMinus.destroy();
-        this.minutePlus.destroy();
-
-        this.hourText.destroy();
-        this.minuteText.destroy();
-
-        this.validateButton.destroy();
-
-        this.clockComponent.destroy();
-
-        this.message.setText("");
-    }
-
     private showAnswerComponent(answer:AnswerComponent){
-    switch(answer.component)
-    {
-        case "multipleChoice":
-            this.showMultipleChoiceAnswer(answer);
-            break;
+        switch(answer.component)
+        {
+            case "multipleChoice":
+                this.showMultipleChoiceAnswer(answer);
+                break;
 
-        case "timePicker":
-            this.showTimePickerAnswer();
-            break;
+            case "timePicker":
+                this.showTimePickerAnswer();
+                break;
 
-        /*case "clockEditor":
-            this.showClockEditorAnswer(this.currentQuestion.question);
-            break;*/
+        }
     }
-}
+
+    private showTimePickerAnswer() {
+        this.clockComponent.showTimePicker(
+            ()=>this.validateTimePicker())
+            ;    
+    }
 
     private showTextQuestion(question:any) {
         this.questionText=this.add.text(
@@ -696,8 +362,12 @@ export class PenaltyScene extends Phaser.Scene {
             return;
         }
 
-        const clockDrawingQuestion = this.currentQuestion.question as ClockDrawingQuestionComponent;
-        const success = this.selectedHour === clockDrawingQuestion.hour && this.selectedMinute === clockDrawingQuestion.minute;
+        if(this.currentQuestion.answer.component !== "multipleChoice") {
+            console.error("answerSelected appelé pour un type de réponse non QCM");
+        return;
+        }
+
+        const success = answerIndex === this.currentQuestion.answer.correct;
 
         // bonne réponse
         if (success) {
@@ -726,9 +396,7 @@ export class PenaltyScene extends Phaser.Scene {
         }
     }
 
-    private shoot(
-        ballTargetIndex: number,
-        keeperTargetIndex: number) {
+    private shoot(ballTargetIndex: number, keeperTargetIndex: number) {
 
         this.isShooting = true;
 
@@ -878,6 +546,7 @@ export class PenaltyScene extends Phaser.Scene {
             () => this.validateKeeperMiniGame()
         );
     }
+
     update() {
         if (!this.miniGameRunning) {
             return;
@@ -1011,18 +680,6 @@ export class PenaltyScene extends Phaser.Scene {
                 txt.destroy();
             }
         });
-    }
-
-    private showClockReadQuestion(question:any){
-        this.expectedHour=question.hour;
-        this.expectedMinute=question.minute;
-
-        this.clockComponent.showClock(
-            512,
-            500,
-            question.hour,
-            question.minute
-        );
     }
 
 }
