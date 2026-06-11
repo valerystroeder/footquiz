@@ -11,6 +11,7 @@
     "component":"timePicker"
   },
 
+  "category": "Lire l'heure",
   "asked":0
 }, {
   "question":{
@@ -23,6 +24,7 @@
     "component":"timePicker"
   },
 
+  "category": "Lire l'heure",
   "asked":0
 }, {
   "question":{
@@ -35,6 +37,7 @@
     "component":"timePicker"
   },
 
+  "category": "Lire l'heure",
   "asked":0
 }, {
   "question":{
@@ -47,6 +50,7 @@
     "component":"timePicker"
   },
 
+  "category": "Lire l'heure",
   "asked":0
 }
 

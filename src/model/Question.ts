@@ -2,6 +2,7 @@ export interface Question {
     question: QuestionComponent;
     answer: AnswerComponent;
     asked: number;
+    category: string;
 }
 
 export type QuestionComponent =

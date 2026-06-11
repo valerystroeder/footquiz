@@ -1,6 +1,5 @@
 # backlog
 
-- affichage questions longues
-- Question lien -> redirige exercices (garder le fil)
-- tous les 1000 points, nouvelle vareuse
+- affiner catégories
+- menu catégories
 - "demander un bonbon?

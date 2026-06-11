@@ -10,7 +10,7 @@
             "answers":["45","30","50","40","35"],
             "correct":3
         },
-
+        "category":"Table de 5",
         "asked":0
     }, {
         "question":{
@@ -23,7 +23,7 @@
             "answers":["45","30","50","40","35"],
             "correct":4
         },
-
+        "category":"Table de 5",
         "asked":0
     }
 

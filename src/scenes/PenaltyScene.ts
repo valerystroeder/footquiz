@@ -7,15 +7,16 @@ import type {
 } from "../model/Question";
 
 import { ClockComponent } from "../components/ClockComponent";
+import { Shop } from "../Shop";
 import type {ClockDrawingQuestionComponent} from "../model/Question";
 
 export class PenaltyScene extends Phaser.Scene {
-    //private keeper!: Phaser.GameObjects.Rectangle;
+    public score = 0;
+    public message!: Phaser.GameObjects.Text;
+    public scoreText!: Phaser.GameObjects.Text;
+    public keeper!: Phaser.GameObjects.Image;
     private isShooting = false;
-    private message!: Phaser.GameObjects.Text;
-    //private ball!: Phaser.GameObjects.Arc;
     private ball!: Phaser.GameObjects.Image;
-    private keeper!: Phaser.GameObjects.Image;
     private currentQuestion!: Question;
     private mathquestions: Question[] = [];
     private lecturequestions: Question[] = [];
@@ -39,16 +40,18 @@ export class PenaltyScene extends Phaser.Scene {
     private targetCircles: Phaser.GameObjects.Arc[] = [];
     private targetTexts: Phaser.GameObjects.Text[] = [];
 
-    private score = 0;
-
     private scorePanel!: Phaser.GameObjects.Graphics;
-    private scoreText!: Phaser.GameObjects.Text;
-    
+
     private questionGraphics: Phaser.GameObjects.Graphics[] = [];
 
     private clockComponent!: ClockComponent;
-    private educationalGames=[{title:"Garder le fil",url:"https://learningapps.org/watch?v=p2osnn81c26"}
-];
+    private shop!: Shop;
+    private educationalGames=[{title:"Garder le fil",url:"https://learningapps.org/watch?v=p2osnn81c26"}];
+
+    private allQuestions:Question[]=[];
+    private categories:string[]=[];
+    private selectedCategories:Set<string>=new Set();
+    private categoryMenuOpen=false;
 
     constructor() {
         super("PenaltyScene");
@@ -59,28 +62,45 @@ export class PenaltyScene extends Phaser.Scene {
         this.load.image("ball", "src/assets/ball.png");
         this.load.image("miniBall", "src/assets/ball.png");
         this.load.image("gloves", "src/assets/gloves.png");
-        this.load.image("keeper", "src/assets/keeper.png");
         this.load.image("background", "src/assets/background.png");
-        //this.load.audio("champions","assets/sounds/champions.mp3");
         this.load.json("mathquestions", "src/data/mathquestions.json");
         this.load.json("clockquestions", "src/data/clockquestions.json");
         this.load.json("proportquestions", "src/data/proportquestions.json");
         this.load.json("lecturequestions", "src/data/lecturequestions.json");
         this.load.image("clock","src/assets/clock.png");
+
+        this.load.image("keeper_default","src/assets/keeper_default.png");
+        this.load.image("keeper_ronaldo","src/assets/keepers/ronaldo.png");
+        this.load.image("keeper_messi","src/assets/keepers/messi.png");
+        this.load.image("keeper_mbappe","src/assets/keepers/mbappe.png");
+        this.load.image("keeper_doku","src/assets/keepers/doku.png");
+        this.load.image("keeper_debruyne","src/assets/keepers/debruyne.png");
+        this.load.image("keeper_pikachu","src/assets/keepers/pikachu.png");
+        this.load.image("keeper_oscar","src/assets/keepers/oscar.png");
+        this.load.image("keeper_neymar","src/assets/keepers/neymar.png");
+        this.load.image("keeper_courtois","src/assets/keepers/courtois.png");
     }
 
     create() {
 
         this.add.image(512, 400, "background").setScale(0.8);
-        this.keeper = this.add.image(512, 300, "keeper").setScale(0.4).setDepth(20);
+        
         this.ball = this.add.image(512, 530, "ball").setScale(0.1).setDepth(30);
         this.message = this.add.text(430, 320, "", { fontSize: "80px", color: "#ffdd00", fontFamily: "Impact" })
             .setDepth(50).setFontSize(100)
-            .setStroke("#000000", 8);;
+            .setStroke("#000000", 8);
+            
+        this.shop = new Shop(this);
+        this.keeper = this.add.image(512,300,`keeper_${this.shop.selectedKeeper}`).setScale(0.4).setDepth(20);
+        this.loadGame();
         this.createScorePanel();
         this.clockComponent = new ClockComponent(this);
         const gamesButton=this.add.text(960,100,"🎮",{fontSize:"40px"}).setOrigin(0.5).setInteractive({useHandCursor:true});
         gamesButton.on("pointerdown",()=>this.showGamesMenu());
+        const shopButton=this.add.text(900,100,"💶",{fontSize:"45px"}).setOrigin(0.5).setInteractive({useHandCursor:true});
+        shopButton.on("pointerdown",()=>this.shop.showShop());
+        const teacherButton=this.add.text(840,100,"👩‍🏫",{fontSize:"40px"}).setOrigin(0.5).setInteractive({useHandCursor:true});
+        teacherButton.on("pointerdown",()=>this.showCategoryMenu());
         const targets = [
             { letter: "A", x: 330, y: 210 },
             { letter: "B", x: 512, y: 190 },
@@ -93,8 +113,177 @@ export class PenaltyScene extends Phaser.Scene {
         this.mathquestions = this.cache.json.get("mathquestions") as Question[];
         this.clockquestions = this.cache.json.get("clockquestions") as Question[];
         this.lecturequestions = this.cache.json.get("lecturequestions") as Question[];
-        this.questions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
+        this.allQuestions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
+        this.categories = [...new Set(this.allQuestions.map(q=>q.category))];
+        this.categories.forEach(category=>this.selectedCategories.add(category));
+        this.reloadQuestions();
         this.loadNextQuestion();
+    }
+
+    public saveGame(){
+        localStorage.setItem(
+            "footquiz",
+            JSON.stringify({
+                score:this.score,
+                unlockedKeepers:this.shop.unlockedKeepers,
+                selectedKeeper:this.shop.selectedKeeper,
+                selectedCategories:[...this.selectedCategories]
+            })
+        );
+    }
+
+    public loadGame(){
+        const save=
+            localStorage.getItem(
+                "footquiz"
+            );
+
+        if(!save)
+        {
+            return;
+        }
+
+        const data=JSON.parse(save);
+
+        this.score=data.score ?? 0;
+
+        this.shop.unlockedKeepers=data.unlockedKeepers ??["default"];
+
+        this.shop.selectedKeeper=data.selectedKeeper ??"default";
+        if(data.selectedCategories) {
+            this.selectedCategories=
+                new Set(
+                    data.selectedCategories
+                );
+        }
+    }
+
+    private reloadQuestions() {
+        this.questions=
+            this.allQuestions.filter(
+                q=>
+                    this.selectedCategories.has(
+                        q.category
+                    )
+            );
+    }
+
+    private showCategoryMenu() {
+        const background=this.add.rectangle(
+            512,
+            384,
+            600,
+            500,
+            0x000000,
+            0.9
+        )
+        .setDepth(300);
+
+        const elements:any[]=[
+            background
+        ];
+
+        const title=this.add.text(
+            512,
+            150,
+            "Catégories",
+            {
+                fontSize:"32px",
+                color:"#ffffff"
+            }
+        )
+        .setOrigin(0.5)
+        .setDepth(301);
+
+        elements.push(title);
+
+        this.categories.forEach(
+            (category,index)=>
+            {
+                const checked=
+                    this.selectedCategories.has(
+                        category
+                    );
+
+                const line=this.add.text(
+                    300,
+                    220 + index * 50,
+                    `${checked ? "☑" : "☐"} ${category}`,
+                    {
+                        fontSize:"28px",
+                        color:"#ffff00"
+                    }
+                )
+                .setInteractive({
+                    useHandCursor:true
+                })
+                .setDepth(301);
+
+                line.on(
+                    "pointerdown",
+                    ()=>{
+                        if(
+                            this.selectedCategories.has(
+                                category
+                            )
+                        )
+                        {
+                            this.selectedCategories.delete(
+                                category
+                            );
+                        }
+                        else
+                        {
+                            this.selectedCategories.add(
+                                category
+                            );
+                        }
+
+                        elements.forEach(
+                            e=>e.destroy()
+                        );
+
+                        closeButton.destroy();
+
+                        this.showCategoryMenu();
+                    }
+                );
+
+                elements.push(line);
+            }
+        );
+
+        const closeButton=this.add.text(
+            730,
+            150,
+            "❌",
+            {
+                fontSize:"32px"
+            }
+        )
+        .setInteractive({
+            useHandCursor:true
+        })
+        .setDepth(301);
+
+        closeButton.on(
+            "pointerdown",
+            ()=>{
+                this.reloadQuestions();
+
+                if(this.questions.length===0)
+                {
+                    this.questions=
+                        [...this.allQuestions];
+                }
+
+                elements.forEach(
+                    e=>e.destroy()
+                );
+
+                closeButton.destroy();
+            }
+        );
     }
 
     private createScorePanel() {
@@ -109,7 +298,7 @@ export class PenaltyScene extends Phaser.Scene {
 
         // Score
         this.scoreText =
-            this.add.text(830,35,"0 pts",
+            this.add.text(830,35,`${this.score} pts`,
                 {
                     fontFamily: "Verdana",
                     fontSize: "28px",
@@ -125,13 +314,10 @@ export class PenaltyScene extends Phaser.Scene {
 
         this.score += points;
 
-        this.scoreText.setText(
-            `${this.score} pts`
-        );
+        this.scoreText.setText(`${this.score} pts`);
+        this.saveGame();
 
-        //
         // petit effet visuel
-        //
         this.tweens.add({
             targets: this.scoreText,
             scaleX: 1.3,
@@ -459,8 +645,7 @@ export class PenaltyScene extends Phaser.Scene {
                     saved
                         ? "😬 RATÉ ! 😬"
                         : "⭐️ GOAL !!! ⭐️"
-                )
-                    .setX(saved ? 280 : 300);
+                ).setX(saved ? 280 : 300);
 
                 this.message.setScale(0);
 
@@ -620,9 +805,9 @@ export class PenaltyScene extends Phaser.Scene {
 
         this.message.setText(
             success
-                ? "SUPER ARRET !"
-                : "BUT ADVERSE !"
-        ).setX(success ? 300 : 300);
+                ? "🤩 SUPER ARRET ! 🤩"
+                : "🙊 Raté ! 🙊"
+        ).setX(success ? 180 : 300);
 
         this.glove.destroy();
         this.miniBall.destroy();
