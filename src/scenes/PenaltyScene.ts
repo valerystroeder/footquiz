@@ -5,7 +5,7 @@ import type {
     QuestionComponent,
     AnswerComponent
 } from "../model/Question";
-
+import { CategoryMenu } from "../components/CategoryMenu";
 import { ClockComponent } from "../components/ClockComponent";
 import { Shop } from "../Shop";
 
@@ -41,6 +41,7 @@ export class PenaltyScene extends Phaser.Scene {
 
     private clockComponent!: ClockComponent;
     private shop!: Shop;
+    private categoryMenu!: CategoryMenu;
     private educationalGames=[{title:"Garder le fil",url:"https://learningapps.org/watch?v=p2osnn81c26"}];
 
     private filteredQuestions: Question[] = [];
@@ -91,7 +92,7 @@ export class PenaltyScene extends Phaser.Scene {
         const shopButton=this.add.text(900,100,"💶",{fontSize:"45px"}).setOrigin(0.5).setInteractive({useHandCursor:true});
         shopButton.on("pointerdown",()=>this.shop.showShop());
         const teacherButton=this.add.text(840,100,"👩‍🏫",{fontSize:"40px"}).setOrigin(0.5).setInteractive({useHandCursor:true});
-        teacherButton.on("pointerdown",()=>this.showCategoryMenu());
+        teacherButton.on("pointerdown",()=>this.categoryMenu.show());
         const targets = [
             { letter: "A", x: 330, y: 210 },
             { letter: "B", x: 512, y: 190 },
@@ -103,9 +104,9 @@ export class PenaltyScene extends Phaser.Scene {
         const questionFiles =import.meta.glob("../data/*.json",{eager:true});
         Object.values(questionFiles).forEach((file:any)=> {this.allQuestions.push(...file.default);});
 
-        //this.allQuestions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
         this.categories = [...new Set(this.allQuestions.map(q=>q.category))];
         this.categories.forEach(category=>this.selectedCategories.add(category));
+        this.categoryMenu =new CategoryMenu(this,this.categories,this.selectedCategories,() => {this.reloadQuestions(); this.saveGame();});
         this.reloadQuestions();
         this.loadNextQuestion();
     }
@@ -156,124 +157,6 @@ export class PenaltyScene extends Phaser.Scene {
                         q.category
                     )
             );
-    }
-
-    private showCategoryMenu() {
-        const background=this.add.rectangle(
-            512,
-            384,
-            600,
-            500,
-            0x000000,
-            0.9
-        )
-        .setDepth(300);
-
-        const elements:any[]=[
-            background
-        ];
-
-        const title=this.add.text(
-            512,
-            150,
-            "Catégories",
-            {
-                fontSize:"32px",
-                color:"#ffffff"
-            }
-        )
-        .setOrigin(0.5)
-        .setDepth(301);
-
-        elements.push(title);
-
-        this.categories.forEach(
-            (category,index)=>
-            {
-                const checked=
-                    this.selectedCategories.has(
-                        category
-                    );
-
-                const line=this.add.text(
-                    300,
-                    220 + index * 50,
-                    `${checked ? "☑" : "☐"} ${category}`,
-                    {
-                        fontSize:"28px",
-                        color:"#ffff00"
-                    }
-                )
-                .setInteractive({
-                    useHandCursor:true
-                })
-                .setDepth(301);
-
-                line.on(
-                    "pointerdown",
-                    ()=>{
-                        if(
-                            this.selectedCategories.has(
-                                category
-                            )
-                        )
-                        {
-                            this.selectedCategories.delete(
-                                category
-                            );
-                        }
-                        else
-                        {
-                            this.selectedCategories.add(
-                                category
-                            );
-                        }
-
-                        elements.forEach(
-                            e=>e.destroy()
-                        );
-
-                        closeButton.destroy();
-
-                        this.showCategoryMenu();
-                    }
-                );
-
-                elements.push(line);
-            }
-        );
-
-        const closeButton=this.add.text(
-            730,
-            150,
-            "❌",
-            {
-                fontSize:"32px"
-            }
-        )
-        .setInteractive({
-            useHandCursor:true
-        })
-        .setDepth(301);
-
-        closeButton.on(
-            "pointerdown",
-            ()=>{
-                this.reloadQuestions();
-
-                if(this.filteredQuestions.length===0)
-                {
-                    this.filteredQuestions=
-                        [...this.allQuestions];
-                }
-
-                elements.forEach(
-                    e=>e.destroy()
-                );
-
-                closeButton.destroy();
-            }
-        );
     }
 
     private createScorePanel() {
