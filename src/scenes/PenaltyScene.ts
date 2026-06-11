@@ -54,23 +54,23 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("goal", "src/assets/goal.png")
-        this.load.image("ball", "src/assets/ball.png");
-        this.load.image("miniBall", "src/assets/ball.png");
-        this.load.image("gloves", "src/assets/gloves.png");
-        this.load.image("background", "src/assets/background.png");
-        this.load.image("clock","src/assets/clock.png");
+        this.load.image("goal", "assets/goal.png")
+        this.load.image("ball", "assets/ball.png");
+        this.load.image("miniBall", "assets/ball.png");
+        this.load.image("gloves", "assets/gloves.png");
+        this.load.image("background", "assets/background.png");
+        this.load.image("clock","assets/clock.png");
 
-        this.load.image("keeper_default","src/assets/keeper_default.png");
-        this.load.image("keeper_ronaldo","src/assets/keepers/ronaldo.png");
-        this.load.image("keeper_messi","src/assets/keepers/messi.png");
-        this.load.image("keeper_mbappe","src/assets/keepers/mbappe.png");
-        this.load.image("keeper_doku","src/assets/keepers/doku.png");
-        this.load.image("keeper_debruyne","src/assets/keepers/debruyne.png");
-        this.load.image("keeper_pikachu","src/assets/keepers/pikachu.png");
-        this.load.image("keeper_oscar","src/assets/keepers/oscar.png");
-        this.load.image("keeper_neymar","src/assets/keepers/neymar.png");
-        this.load.image("keeper_courtois","src/assets/keepers/courtois.png");
+        this.load.image("keeper_default","assets/keeper_default.png");
+        this.load.image("keeper_ronaldo","assets/keepers/ronaldo.png");
+        this.load.image("keeper_messi","assets/keepers/messi.png");
+        this.load.image("keeper_mbappe","assets/keepers/mbappe.png");
+        this.load.image("keeper_doku","assets/keepers/doku.png");
+        this.load.image("keeper_debruyne","assets/keepers/debruyne.png");
+        this.load.image("keeper_pikachu","assets/keepers/pikachu.png");
+        this.load.image("keeper_oscar","assets/keepers/oscar.png");
+        this.load.image("keeper_neymar","assets/keepers/neymar.png");
+        this.load.image("keeper_courtois","assets/keepers/courtois.png");
     }
 
     create() {
@@ -101,12 +101,7 @@ export class PenaltyScene extends Phaser.Scene {
             { letter: "E", x: 694, y: 320 }
         ];
         targets.forEach((target, index) => { this.createTarget(target.letter, target.x, target.y, index); });
-
-        this.mathquestions = this.cache.json.get("mathquestions") as Question[];
-        this.clockquestions = this.cache.json.get("clockquestions") as Question[];
-        this.lecturequestions = this.cache.json.get("lecturequestions") as Question[];
-
-        const questionFiles =import.meta.glob("../data/*.json",{eager:true});
+        const questionFiles =import.meta.glob("../../public/data/*.json",{eager:true});
         Object.values(questionFiles).forEach((file:any)=> {this.allQuestions.push(...file.default);});
 
         //this.allQuestions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
