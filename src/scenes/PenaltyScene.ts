@@ -8,7 +8,6 @@ import type {
 
 import { ClockComponent } from "../components/ClockComponent";
 import { Shop } from "../Shop";
-import type {ClockDrawingQuestionComponent} from "../model/Question";
 
 export class PenaltyScene extends Phaser.Scene {
     public score = 0;
