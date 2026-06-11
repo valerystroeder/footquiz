@@ -53,23 +53,23 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("goal", "public/assets/goal.png")
-        this.load.image("ball", "public/assets/ball.png");
-        this.load.image("miniBall", "public/assets/ball.png");
-        this.load.image("gloves", "public/assets/gloves.png");
-        this.load.image("background", "public/assets/background.png");
-        this.load.image("clock","public/assets/clock.png");
+        this.load.image("goal", "assets/goal.png")
+        this.load.image("ball", "assets/ball.png");
+        this.load.image("miniBall", "assets/ball.png");
+        this.load.image("gloves", "assets/gloves.png");
+        this.load.image("background", "assets/background.png");
+        this.load.image("clock","assets/clock.png");
 
-        this.load.image("keeper_default","public/assets/keeper_default.png");
-        this.load.image("keeper_ronaldo","public/assets/keepers/ronaldo.png");
-        this.load.image("keeper_messi","public/assets/keepers/messi.png");
-        this.load.image("keeper_mbappe","public/assets/keepers/mbappe.png");
-        this.load.image("keeper_doku","public/assets/keepers/doku.png");
-        this.load.image("keeper_debruyne","public/assets/keepers/debruyne.png");
-        this.load.image("keeper_pikachu","public/assets/keepers/pikachu.png");
-        this.load.image("keeper_oscar","public/assets/keepers/oscar.png");
-        this.load.image("keeper_neymar","public/assets/keepers/neymar.png");
-        this.load.image("keeper_courtois","public/assets/keepers/courtois.png");
+        this.load.image("keeper_default","assets/keeper_default.png");
+        this.load.image("keeper_ronaldo","assets/keepers/ronaldo.png");
+        this.load.image("keeper_messi","assets/keepers/messi.png");
+        this.load.image("keeper_mbappe","assets/keepers/mbappe.png");
+        this.load.image("keeper_doku","assets/keepers/doku.png");
+        this.load.image("keeper_debruyne","assets/keepers/debruyne.png");
+        this.load.image("keeper_pikachu","assets/keepers/pikachu.png");
+        this.load.image("keeper_oscar","assets/keepers/oscar.png");
+        this.load.image("keeper_neymar","assets/keepers/neymar.png");
+        this.load.image("keeper_courtois","assets/keepers/courtois.png");
     }
 
     create() {
