@@ -1,0 +1,219 @@
+[{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"Quelle forme possède 3 côtés ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "carré",
+      "triangle",
+      "rectangle",
+      "disque",
+      "aucun"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"Que signifie isométrique ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "même couleur",
+      "même longueur",
+      "même poids",
+      "même odeur",
+      "aucune de ces réponses"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"J'ai 4 côtés isométriques."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "triangle",
+      "rectangle",
+      "carré",
+      "disque",
+      "aucun"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"J'ai 4 côtés, 2 plus longs et 2 plus courts."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "triangle",
+      "carré",
+      "rectangle",
+      "disque",
+      "aucun"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"Combien de côtés a un quadrilatère ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"J'ai un seul angle droit."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "disque",
+      "rectangle",
+      "carré",
+      "triangle rectangle",
+      "aucun"
+    ],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"J'ai un seul côté arrondi."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "rectangle",
+      "triangle rectangle",
+      "carré",
+      "aucun",
+      "disque"
+    ],
+    "correct":4
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"🔺"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "disque",
+      "rectangle",
+      "carré",
+      "aucun",
+      "triangle"
+    ],
+    "correct":4
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"🟦"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "carré",
+      "disque",
+      "triangle rectangle",
+      "rectangle",
+      "aucun"
+    ],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"▬"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "triangle rectangle",
+      "rectangle",
+      "disque",
+      "carré",
+      "aucun"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Géométrie",
+  "question":{
+    "component":"text",
+    "text":"🟢"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "rectangle",
+      "triangle rectangle",
+      "disque",
+      "carré",
+      "aucun"
+    ],
+    "correct":2
+  },
+  "asked":0
+}]

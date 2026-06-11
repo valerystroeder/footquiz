@@ -1,5 +1,4 @@
 # backlog
 
-- affiner catégories
-- menu catégories
+- publier
 - "demander un bonbon?

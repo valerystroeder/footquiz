@@ -18,10 +18,6 @@ export class PenaltyScene extends Phaser.Scene {
     private isShooting = false;
     private ball!: Phaser.GameObjects.Image;
     private currentQuestion!: Question;
-    private mathquestions: Question[] = [];
-    private lecturequestions: Question[] = [];
-    private clockquestions: Question[] = [];
-    private questions: Question[] = [];
     private targets = [
         { letter: "A", x: 330, y: 210 },
         { letter: "B", x: 512, y: 190 },
@@ -48,10 +44,10 @@ export class PenaltyScene extends Phaser.Scene {
     private shop!: Shop;
     private educationalGames=[{title:"Garder le fil",url:"https://learningapps.org/watch?v=p2osnn81c26"}];
 
+    private filteredQuestions: Question[] = [];
     private allQuestions:Question[]=[];
     private categories:string[]=[];
     private selectedCategories:Set<string>=new Set();
-    private categoryMenuOpen=false;
 
     constructor() {
         super("PenaltyScene");
@@ -63,10 +59,6 @@ export class PenaltyScene extends Phaser.Scene {
         this.load.image("miniBall", "src/assets/ball.png");
         this.load.image("gloves", "src/assets/gloves.png");
         this.load.image("background", "src/assets/background.png");
-        this.load.json("mathquestions", "src/data/mathquestions.json");
-        this.load.json("clockquestions", "src/data/clockquestions.json");
-        this.load.json("proportquestions", "src/data/proportquestions.json");
-        this.load.json("lecturequestions", "src/data/lecturequestions.json");
         this.load.image("clock","src/assets/clock.png");
 
         this.load.image("keeper_default","src/assets/keeper_default.png");
@@ -113,7 +105,11 @@ export class PenaltyScene extends Phaser.Scene {
         this.mathquestions = this.cache.json.get("mathquestions") as Question[];
         this.clockquestions = this.cache.json.get("clockquestions") as Question[];
         this.lecturequestions = this.cache.json.get("lecturequestions") as Question[];
-        this.allQuestions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
+
+        const questionFiles =import.meta.glob("../data/*.json",{eager:true});
+        Object.values(questionFiles).forEach((file:any)=> {this.allQuestions.push(...file.default);});
+
+        //this.allQuestions = [...this.clockquestions,...this.mathquestions,...this.lecturequestions];
         this.categories = [...new Set(this.allQuestions.map(q=>q.category))];
         this.categories.forEach(category=>this.selectedCategories.add(category));
         this.reloadQuestions();
@@ -159,7 +155,7 @@ export class PenaltyScene extends Phaser.Scene {
     }
 
     private reloadQuestions() {
-        this.questions=
+        this.filteredQuestions=
             this.allQuestions.filter(
                 q=>
                     this.selectedCategories.has(
@@ -271,9 +267,9 @@ export class PenaltyScene extends Phaser.Scene {
             ()=>{
                 this.reloadQuestions();
 
-                if(this.questions.length===0)
+                if(this.filteredQuestions.length===0)
                 {
-                    this.questions=
+                    this.filteredQuestions=
                         [...this.allQuestions];
                 }
 
@@ -329,10 +325,10 @@ export class PenaltyScene extends Phaser.Scene {
 
     private loadNextQuestion() {
         // Nombre minimum de fois posée
-        const minAsked = Math.min(...this.questions.map(q => q.asked));
+        const minAsked = Math.min(...this.filteredQuestions.map(q => q.asked));
 
         // Questions candidates
-        const candidates = this.questions.filter(q => q.asked === minAsked);
+        const candidates = this.filteredQuestions.filter(q => q.asked === minAsked);
 
         // Tirage au hasard
         const question = Phaser.Utils.Array.GetRandom(candidates) as Question;
