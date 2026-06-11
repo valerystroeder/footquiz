@@ -1,4 +1,4 @@
-import type { PenaltyScene } from "./scenes/PenaltyScene";
+import type { PenaltyScene } from "../scenes/PenaltyScene";
 
 export class Shop {
     
@@ -12,47 +12,47 @@ export class Shop {
     {
         id:"ronaldo",
         name:"Ronaldo",
-        price:1
+        price:500
     },
     {
         id:"messi",
         name:"Messi",
-        price:1
+        price:500
     },
     {
         id:"mbappe",
         name:"Mbappé",
-        price:1
+        price:500
     },
     {
         id:"doku",
         name:"Doku",
-        price:1
+        price:500
     },
     {
         id:"debruyne",
         name:"De Bruyne",
-        price:1
+        price:500
     },
     {
         id:"pikachu",
         name:"Pikachu",
-        price:1
+        price:500
     },
     {
         id:"courtois",
         name:"Courtois",
-        price:1
+        price:500
     },
     {
         id:"neymar",
         name:"Neymar",
-        price:1
+        price:500
     },
     {
         id:"oscar",
         name:"Oscar",
-        price:1
+        price:500
     }];
 
     constructor(scene: PenaltyScene) {

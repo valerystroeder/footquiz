@@ -7,7 +7,7 @@ import type {
 } from "../model/Question";
 import { CategoryMenu } from "../components/CategoryMenu";
 import { ClockComponent } from "../components/ClockComponent";
-import { Shop } from "../Shop";
+import { Shop } from "../components/Shop";
 
 export class PenaltyScene extends Phaser.Scene {
     public score = 0;
