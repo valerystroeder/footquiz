@@ -1,0 +1,499 @@
+[{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Si nous sommes mercredi, lundi était..."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "demain",
+      "avant-hier",
+      "hier",
+      "après-demain",
+      "la veille"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Si nous sommes jeudi, samedi sera..."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "aujourd'hui",
+      "le lendemain",
+      "après-demain",
+      "hier",
+      "avant-hier"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Si nous sommes samedi, vendredi était..."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "le surlendemain",
+      "demain",
+      "la veille",
+      "après-demain",
+      "aujourd'hui"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Si nous sommes mardi, mercredi sera..."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "avant-hier",
+      "hier",
+      "le lendemain",
+      "la veille",
+      "aujourd'hui"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Complète : _________, lundi, mardi"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "jeudi",
+      "samedi",
+      "mercredi",
+      "dimanche",
+      "vendredi"
+    ],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Complète : mercredi, jeudi, ____________"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "samedi",
+      "dimanche",
+      "lundi",
+      "mardi",
+      "vendredi"
+    ],
+    "correct":4
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Vrai ou faux : Samedi et dimanche sont les deux jours du week-end."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "Vrai",
+      "Faux",
+      "On ne sait pas",
+      "Parfois",
+      "Jamais"
+    ],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Vrai ou faux : Mercredi est avant jeudi dans la suite des jours de la semaine."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "Faux",
+      "Vrai",
+      "Parfois",
+      "Jamais",
+      "On ne sait pas"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Complète : La ______ du dimanche, c'est le samedi."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "veille",
+      "avant-veille",
+      "lendemain",
+      "surlendemain",
+      "avant-hier"
+    ],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Complète : ______ nous étions jeudi ; aujourd'hui, nous sommes samedi."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "lendemain",
+      "avant-veille",
+      "veille",
+      "surlendemain",
+      "avant-hier"
+    ],
+    "correct":4
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Complète : Le ______ de samedi, c'est lundi."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "veille",
+      "surlendemain",
+      "avant-hier",
+      "lendemain",
+      "avant-veille"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Complète : L'________ de lundi, c'est samedi."
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "lendemain",
+      "veille",
+      "avant-veille",
+      "surlendemain",
+      "avant-hier"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Quel est le mois après février ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "janvier",
+      "mars",
+      "avril",
+      "mai",
+      "juin"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Quel est le mois avant décembre ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "octobre",
+      "septembre",
+      "janvier",
+      "novembre",
+      "août"
+    ],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Quel est le mois après juillet ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "septembre",
+      "octobre",
+      "août",
+      "juin",
+      "novembre"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Temps",
+  "question":{
+    "component":"text",
+    "text":"Quel est le mois avant avril ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "mars",
+      "mai",
+      "juin",
+      "février",
+      "janvier"
+    ],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"À quelle saison y a-t-il souvent de la neige ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "printemps",
+      "été",
+      "automne",
+      "hiver",
+      "aucune"
+    ],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"À quelle saison les feuilles tombent-elles des arbres ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "automne",
+      "été",
+      "hiver",
+      "printemps",
+      "aucune"
+    ],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"À quelle saison fait-il généralement le plus chaud ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "hiver",
+      "été",
+      "automne",
+      "printemps",
+      "aucune"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"À quelle saison les fleurs repoussent-elles ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "hiver",
+      "été",
+      "printemps",
+      "automne",
+      "aucune"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"Quelle est la saison du 21 juillet ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "printemps",
+      "automne",
+      "hiver",
+      "été",
+      "aucune"
+    ],
+    "correct":3
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"Quelle est la saison du 31 décembre ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "hiver",
+      "été",
+      "printemps",
+      "automne",
+      "aucune"
+    ],
+    "correct":0
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"Quelle est la saison du 1er avril ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "hiver",
+      "printemps",
+      "automne",
+      "été",
+      "aucune"
+    ],
+    "correct":1
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"Quelle est la saison du 30 octobre ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "été",
+      "printemps",
+      "automne",
+      "hiver",
+      "aucune"
+    ],
+    "correct":2
+  },
+  "asked":0
+},
+
+{
+  "category":"Saisons",
+  "question":{
+    "component":"text",
+    "text":"Quel est le bon ordre des saisons ?"
+  },
+  "answer":{
+    "component":"multipleChoice",
+    "answers":[
+      "été, automne, hiver, printemps",
+      "printemps, été, automne, hiver",
+      "automne, hiver, printemps, été",
+      "hiver, printemps, été, automne",
+      "été, printemps, hiver, automne"
+    ],
+    "correct":3
+  },
+  "asked":0
+}]
