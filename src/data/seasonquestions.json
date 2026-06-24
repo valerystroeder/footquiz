@@ -402,7 +402,7 @@
   "category":"Saisons",
   "question":{
     "component":"text",
-    "text":"Quelle est la saison du 21 juillet ?"
+    "text":"Quelle est la saison du mois de juillet ?"
   },
   "answer":{
     "component":"multipleChoice",
@@ -422,7 +422,7 @@
   "category":"Saisons",
   "question":{
     "component":"text",
-    "text":"Quelle est la saison du 31 décembre ?"
+    "text":"Quelle est la saison du mois de janvier?"
   },
   "answer":{
     "component":"multipleChoice",
@@ -442,7 +442,7 @@
   "category":"Saisons",
   "question":{
     "component":"text",
-    "text":"Quelle est la saison du 1er avril ?"
+    "text":"Quelle est la saison mois d'avril ?"
   },
   "answer":{
     "component":"multipleChoice",
@@ -462,7 +462,7 @@
   "category":"Saisons",
   "question":{
     "component":"text",
-    "text":"Quelle est la saison du 30 octobre ?"
+    "text":"Quelle est la saison du mois d'octobre ?"
   },
   "answer":{
     "component":"multipleChoice",
